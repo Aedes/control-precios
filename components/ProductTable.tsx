@@ -1,8 +1,4 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Badge } from "@/components/ui/badge"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Check, X } from "lucide-react"
+import { Table, TableBody,  TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import React from "react"
 import ProductRow from "./ProductRow"
 
@@ -38,7 +34,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
 }) => {
   return (
     <div>
-      <Table>
+      <Table className="border-l border-r border-gray-200">
         <TableHeader>
           <TableRow>
             <TableHead>Producto</TableHead>
@@ -50,7 +46,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
           </TableRow>
         </TableHeader>
         <TableBody>
-          {products.map((product) => (
+          {products.map((product, idx) => (
             <ProductRow
               key={product.id}
               product={product}
@@ -61,6 +57,7 @@ const ProductTable: React.FC<ProductTableProps> = ({
               handleCancelEdit={handleCancelEdit}
               setTempPrice={setTempPrice}
               formatPrice={formatPrice}
+              isLast={idx === products.length - 1}
             />
           ))}
         </TableBody>

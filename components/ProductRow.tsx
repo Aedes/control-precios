@@ -23,6 +23,7 @@ interface ProductRowProps {
   handleCancelEdit: () => void
   setTempPrice: (value: string) => void
   formatPrice: (price: number) => string
+  isLast?: boolean
 }
 
 const ProductRow: React.FC<ProductRowProps> = ({
@@ -34,9 +35,10 @@ const ProductRow: React.FC<ProductRowProps> = ({
   handleCancelEdit,
   setTempPrice,
   formatPrice,
+  isLast = false,
 }) => {
   return (
-    <TableRow>
+    <TableRow className={isLast ? "border-b border-gray-300" : ""}>
       <TableCell className="font-medium">{product.name}</TableCell>
       <TableCell>
         <Badge variant="secondary">{product.brand}</Badge>
@@ -69,10 +71,10 @@ const ProductRow: React.FC<ProductRowProps> = ({
               autoFocus
             />
             <Button size="sm" variant="ghost" onClick={() => handleSavePrice(product.id)}>
-              <Check className="h-4 w-4" />
+              <Check className="h-4 w-4 text-green-600" />
             </Button>
             <Button size="sm" variant="ghost" onClick={handleCancelEdit}>
-              <X className="h-4 w-4" />
+              <X className="h-4 w-4 text-red-600" />
             </Button>
           </div>
         ) : (
