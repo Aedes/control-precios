@@ -13,24 +13,16 @@ interface Product {
 
 interface ProductTableProps {
   products: Product[]
-  editingPrice: string | null
-  tempPrice: string
-  handleEditPrice: (productId: string, currentPrice: number) => void
-  handleSavePrice: (productId: string) => void
-  handleCancelEdit: () => void
-  setTempPrice: (value: string) => void
   formatPrice: (price: number) => string
+  onEditProduct: (product: Product) => void
+  onDeleteProduct: (product: Product) => void
 }
 
 const ProductTable: React.FC<ProductTableProps> = ({
   products,
-  editingPrice,
-  tempPrice,
-  handleEditPrice,
-  handleSavePrice,
-  handleCancelEdit,
-  setTempPrice,
   formatPrice,
+  onEditProduct,
+  onDeleteProduct,
 }) => {
   return (
     <div>
@@ -38,7 +30,6 @@ const ProductTable: React.FC<ProductTableProps> = ({
         <TableHeader>
           <TableRow>
             <TableHead>Producto</TableHead>
-            <TableHead>Marca</TableHead>
             <TableHead>Categoría</TableHead>
             <TableHead>Características</TableHead>
             <TableHead className="text-right">Precio Actual</TableHead>
@@ -50,14 +41,11 @@ const ProductTable: React.FC<ProductTableProps> = ({
             <ProductRow
               key={product.id}
               product={product}
-              editingPrice={editingPrice}
-              tempPrice={tempPrice}
-              handleEditPrice={handleEditPrice}
-              handleSavePrice={handleSavePrice}
-              handleCancelEdit={handleCancelEdit}
-              setTempPrice={setTempPrice}
               formatPrice={formatPrice}
+              onEditProduct={onEditProduct}
+              onDeleteProduct={onDeleteProduct}
               isLast={idx === products.length - 1}
+              isFirst={idx === 0}
             />
           ))}
         </TableBody>
