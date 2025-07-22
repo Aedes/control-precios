@@ -1,1 +1,1 @@
-# Softare de lista de precios - Made by Aedes
+# Software de lista de precios - Made by Aedes
